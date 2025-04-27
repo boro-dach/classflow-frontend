@@ -24,6 +24,7 @@ import {
 import { Button } from "@/shared/ui/button";
 import { UserRoles } from "../../model/enums";
 import Link from "next/link";
+import { register } from "../api/register";
 
 const RegisterForm = () => {
   const form = useForm<z.infer<typeof registerSchema>>({
@@ -41,7 +42,7 @@ const RegisterForm = () => {
   });
 
   function onSubmit(data: z.infer<typeof registerSchema>) {
-    console.log("data", data);
+    console.log(register(data));
   }
 
   return (
