@@ -29,7 +29,6 @@ const LoginForm = () => {
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: "",
       login: "",
       password: "",
       role: UserRoles.STUDENT,
@@ -44,19 +43,6 @@ const LoginForm = () => {
     <Form {...form}>
       <h3 className="text-2xl font-bold">Log in</h3>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-4">
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input placeholder="example@mail.com" {...field} />
-              </FormControl>
-              <FormDescription>Your email address</FormDescription>
-            </FormItem>
-          )}
-        />
         <FormField
           control={form.control}
           name="login"
@@ -97,8 +83,8 @@ const LoginForm = () => {
                 </FormControl>
                 <SelectContent>
                   <SelectItem value={UserRoles.STUDENT}>Student</SelectItem>
-                  <SelectItem value={UserRoles.TEACHER}>Teacher</SelectItem>
                   <SelectItem value={UserRoles.PARENT}>Parent</SelectItem>
+                  <SelectItem value={UserRoles.TEACHER}>Teacher</SelectItem>
                 </SelectContent>
               </Select>
               <FormDescription>Your role</FormDescription>

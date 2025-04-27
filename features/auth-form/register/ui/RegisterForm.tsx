@@ -143,8 +143,8 @@ const RegisterForm = () => {
                 </FormControl>
                 <SelectContent>
                   <SelectItem value={UserRoles.STUDENT}>Student</SelectItem>
-                  <SelectItem value={UserRoles.TEACHER}>Teacher</SelectItem>
                   <SelectItem value={UserRoles.PARENT}>Parent</SelectItem>
+                  <SelectItem value={UserRoles.TEACHER}>Teacher</SelectItem>
                 </SelectContent>
               </Select>
               <FormDescription>Your role</FormDescription>
