@@ -1,14 +1,11 @@
 import { saveAccessToken } from "@/entities/user/lib/token";
 import axios from "axios";
 
-export async function register(data: any) {
-  const response = await axios.post(
-    "http://localhost:5000/auth/register",
-    data
-  );
+export async function login(data: any) {
+  const response = await axios.post("http://localhost:5000/auth/login", data);
 
   if (response.status !== 200) {
-    throw new Error("Failed to register user");
+    throw new Error("Failed to login user");
   }
 
   saveAccessToken(response.data.accessToken, {

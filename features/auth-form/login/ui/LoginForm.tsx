@@ -24,6 +24,7 @@ import {
 } from "@/shared/ui/select";
 import { Button } from "@/shared/ui/button";
 import Link from "next/link";
+import { login } from "../api/login";
 
 const LoginForm = () => {
   const form = useForm<z.infer<typeof loginSchema>>({
@@ -36,7 +37,7 @@ const LoginForm = () => {
   });
 
   function onSubmit(data: z.infer<typeof loginSchema>) {
-    console.log("data", data);
+    console.log(login(data));
   }
 
   return (
