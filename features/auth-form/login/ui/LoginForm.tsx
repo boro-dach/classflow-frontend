@@ -1,10 +1,11 @@
 "use client";
 
 import React from "react";
-import { registerSchema } from "../model/schema";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { loginSchema } from "../model/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { UserRoles } from "../../model/enums";
 import {
   Form,
   FormControl,
@@ -22,58 +23,27 @@ import {
   SelectValue,
 } from "@/shared/ui/select";
 import { Button } from "@/shared/ui/button";
-import { UserRoles } from "../../model/enums";
 import Link from "next/link";
 
-const RegisterForm = () => {
-  const form = useForm<z.infer<typeof registerSchema>>({
-    resolver: zodResolver(registerSchema),
+const LoginForm = () => {
+  const form = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
-      name: "",
-      surname: "",
       email: "",
       login: "",
       password: "",
-      age: 0,
-      parentCode: "",
       role: UserRoles.STUDENT,
     },
   });
 
-  function onSubmit(data: z.infer<typeof registerSchema>) {
+  function onSubmit(data: z.infer<typeof loginSchema>) {
     console.log("data", data);
   }
 
   return (
     <Form {...form}>
-      <h3 className="text-2xl font-bold">Register</h3>
+      <h3 className="text-2xl font-bold">Log in</h3>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-4">
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Name</FormLabel>
-              <FormControl>
-                <Input placeholder="John" {...field} />
-              </FormControl>
-              <FormDescription>Your first name</FormDescription>
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="surname"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Surname</FormLabel>
-              <FormControl>
-                <Input placeholder="Doe" {...field} />
-              </FormControl>
-              <FormDescription>Your last name</FormDescription>
-            </FormItem>
-          )}
-        />
         <FormField
           control={form.control}
           name="email"
@@ -81,9 +51,9 @@ const RegisterForm = () => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input type="email" placeholder="example@mail.com" {...field} />
+                <Input placeholder="example@mail.com" {...field} />
               </FormControl>
-              <FormDescription>Your email</FormDescription>
+              <FormDescription>Your email address</FormDescription>
             </FormItem>
           )}
         />
@@ -96,9 +66,7 @@ const RegisterForm = () => {
               <FormControl>
                 <Input placeholder="" {...field} />
               </FormControl>
-              <FormDescription>
-                Unique username you will use for logging in
-              </FormDescription>
+              <FormDescription>Your unique username</FormDescription>
             </FormItem>
           )}
         />
@@ -112,19 +80,6 @@ const RegisterForm = () => {
                 <Input type="password" placeholder="" {...field} />
               </FormControl>
               <FormDescription>Your strong password</FormDescription>
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="age"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Age</FormLabel>
-              <FormControl>
-                <Input placeholder="" {...field} />
-              </FormControl>
-              <FormDescription>Your age</FormDescription>
             </FormItem>
           )}
         />
@@ -156,35 +111,18 @@ const RegisterForm = () => {
             </FormItem>
           )}
         />
-        {form.watch("role") === UserRoles.STUDENT && form.watch("age") < 18 && (
-          <FormField
-            control={form.control}
-            name="parentCode"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Parent code</FormLabel>
-                <FormControl>
-                  <Input {...field} />
-                </FormControl>
-                <FormDescription>
-                  Minors have to provide parent code for registration
-                </FormDescription>
-              </FormItem>
-            )}
-          />
-        )}
         <Button className="mt-2 cursor-pointer" type="submit">
-          Register
+          Log in
         </Button>
       </form>
       <div className="flex gap-1 mt-4">
-        <p>Already have an account?</p>
-        <Link className="underline" href={"/auth/login"}>
-          Log in
+        <p>Don't have an account?</p>
+        <Link className="underline" href={"/auth/register"}>
+          Register
         </Link>
       </div>
     </Form>
   );
 };
 
-export default RegisterForm;
+export default LoginForm;

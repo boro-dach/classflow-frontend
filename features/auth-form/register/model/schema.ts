@@ -1,10 +1,5 @@
 import { z } from "zod";
-
-export enum UserRoles {
-  STUDENT = "STUDENT",
-  TEACHER = "TEACHER",
-  PARENT = "PARENT",
-}
+import { UserRoles } from "../../model/enums";
 
 export const registerSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
