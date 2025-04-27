@@ -142,15 +142,9 @@ const RegisterForm = () => {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value={UserRoles.STUDENT}>
-                    {UserRoles.STUDENT}
-                  </SelectItem>
-                  <SelectItem value={UserRoles.TEACHER}>
-                    {UserRoles.TEACHER}
-                  </SelectItem>
-                  <SelectItem value={UserRoles.PARENT}>
-                    {UserRoles.PARENT}
-                  </SelectItem>
+                  <SelectItem value={UserRoles.STUDENT}>Student</SelectItem>
+                  <SelectItem value={UserRoles.TEACHER}>Teacher</SelectItem>
+                  <SelectItem value={UserRoles.PARENT}>Parent</SelectItem>
                 </SelectContent>
               </Select>
               <FormDescription>Your role</FormDescription>
