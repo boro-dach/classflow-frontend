@@ -3,7 +3,7 @@ import axios from "axios";
 
 export async function register(data: any) {
   const response = await axios.post(
-    "http://localhost:5000/auth/register",
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/register`,
     data
   );
 
