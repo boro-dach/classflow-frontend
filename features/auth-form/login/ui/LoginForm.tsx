@@ -96,7 +96,7 @@ const LoginForm = () => {
           Log in
         </Button>
       </form>
-      <div className="flex gap-1 mt-4">
+      <div className="flex gap-1 my-4">
         <p>Don't have an account?</p>
         <Link className="underline" href={"/auth/register"}>
           Register

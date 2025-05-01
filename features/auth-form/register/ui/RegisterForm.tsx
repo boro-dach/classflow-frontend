@@ -172,7 +172,7 @@ const RegisterForm = () => {
           Register
         </Button>
       </form>
-      <div className="flex gap-1 mt-4">
+      <div className="flex gap-1 my-4">
         <p>Already have an account?</p>
         <Link className="underline" href={"/auth/login"}>
           Log in
